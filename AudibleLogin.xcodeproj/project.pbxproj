@@ -19,6 +19,7 @@
 		21705A81206013E000E417CA /* WalkThroughLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21705A80206013E000E417CA /* WalkThroughLoginCell.swift */; };
 		218CAB072061A55C00945623 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CAB062061A55C00945623 /* Main.swift */; };
 		218CAB092061AC0A00945623 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CAB082061AC0A00945623 /* Home.swift */; };
+		218CAB0C2061B4E900945623 /* WalkThroughLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218CAB0B2061B4E900945623 /* WalkThroughLoginDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		21705A80206013E000E417CA /* WalkThroughLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughLoginCell.swift; sourceTree = "<group>"; };
 		218CAB062061A55C00945623 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		218CAB082061AC0A00945623 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		218CAB0B2061B4E900945623 /* WalkThroughLoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughLoginDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		21705A62205EFDB200E417CA /* AudibleLogin */ = {
 			isa = PBXGroup;
 			children = (
+				218CAB0A2061B4D300945623 /* protocols */,
 				218CAB052061A50600945623 /* Controller */,
 				21705A75205F3FCC00E417CA /* extensions */,
 				21705A63205EFDB200E417CA /* AppDelegate.swift */,
@@ -115,6 +118,14 @@
 				218CAB082061AC0A00945623 /* Home.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		218CAB0A2061B4D300945623 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				218CAB0B2061B4E900945623 /* WalkThroughLoginDelegate.swift */,
+			);
+			path = protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +203,7 @@
 				21705A66205EFDB200E417CA /* WalkThrough.swift in Sources */,
 				21705A7C205F49D600E417CA /* WalkThroughCell.swift in Sources */,
 				218CAB072061A55C00945623 /* Main.swift in Sources */,
+				218CAB0C2061B4E900945623 /* WalkThroughLoginDelegate.swift in Sources */,
 				21705A7F205F6C0100E417CA /* Page.swift in Sources */,
 				218CAB092061AC0A00945623 /* Home.swift in Sources */,
 				21705A64205EFDB200E417CA /* AppDelegate.swift in Sources */,

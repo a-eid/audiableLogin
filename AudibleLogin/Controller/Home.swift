@@ -2,6 +2,8 @@ import UIKit
 
 class Home: UIViewController {
   
+  var main: Main?
+  
   let image: UIImageView = {
     let iv = UIImageView()
     iv.contentMode = .scaleAspectFill
@@ -34,6 +36,6 @@ class Home: UIViewController {
   }
   
   @objc func signout(){
-    print("signout")
+    main?.logout()
   }
 }

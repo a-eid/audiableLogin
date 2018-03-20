@@ -126,6 +126,7 @@ extension WalkThrough: UICollectionViewDelegate, UICollectionViewDataSource, UIC
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.row == 3 {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: lCell, for: indexPath) as! WalkThroughLoginCell
+      cell.WalkThrough = self 
       return cell
     }
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: wCell, for: indexPath) as! WalkThroughCell
@@ -133,6 +134,7 @@ extension WalkThrough: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     return cell
   }
   
+
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.bounds.width, height: view.bounds.height)
@@ -188,3 +190,16 @@ extension WalkThrough: UICollectionViewDelegate, UICollectionViewDataSource, UIC
 //  }
 }
 
+extension WalkThrough: WalkThroughLoginDelegate {
+  func handleLogin(username: String, password: String){
+    // get the rootviewcontroller
+    if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Main {
+      rvc.viewControllers = [ Home() ] // after dismissal this will be shown.
+      dismiss(animated: true, completion: nil)
+    }
+  }
+  
+  func handleLogout(){
+    
+  }
+}

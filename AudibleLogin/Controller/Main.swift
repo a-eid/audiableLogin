@@ -8,11 +8,17 @@ class Main: UINavigationController {
     var isLoggedIn = false
 
     if ( isLoggedIn ){
-      viewControllers = [ Home() ]
+      let home = Home()
+      home.main = self
+      viewControllers = [ home ]
     }else{
       DispatchQueue.main.async {
         self.present(WalkThrough(), animated: true, completion: nil)
       }
     }
+  }
+  
+  func logout(){
+    self.present(WalkThrough(), animated: true, completion: nil)
   }
 }

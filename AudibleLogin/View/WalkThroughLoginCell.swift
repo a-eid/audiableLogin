@@ -1,14 +1,8 @@
-//
-//  WalkThroughLoginCell.swift
-//  AudibleLogin
-//
-//  Created by Ahmed Eid on 19/03/2018.
-//  Copyright © 2018 Ahmed Eid. All rights reserved.
-//
-
 import UIKit
 
 class WalkThroughLoginCell: UICollectionViewCell {
+  
+  weak var WalkThrough: WalkThroughLoginDelegate?
   
   var container: UIView = {
     let v = UIView()
@@ -61,8 +55,7 @@ class WalkThroughLoginCell: UICollectionViewCell {
   
   
   @objc func handleLoginIn(){
-    // hmmm.
-    print("working")
+    WalkThrough?.handleLogin(username: "username", password: "password")
   }
   
   override init(frame: CGRect) {
