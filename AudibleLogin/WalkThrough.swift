@@ -8,10 +8,11 @@ class WalkThrough: UIViewController {
     Page(img: #imageLiteral(resourceName: "page3"), title: "sit amet consectetur.", desc: "ipsum eaque, neque odit sequi mollitia, quas a natus laboriosam tempore.quas a natus"),
   ]
   
-  let nextButton: UIButton =  {
+  lazy var nextButton: UIButton =  {
     let b = UIButton()
     b.setTitleColor(#colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), for: .normal)
     b.setTitle("Next", for: .normal)
+    b.addTarget(self, action: #selector(goToNext), for: .touchUpInside)
     return b
   }()
   
@@ -19,6 +20,7 @@ class WalkThrough: UIViewController {
     let b = UIButton()
     b.setTitleColor(#colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), for: .normal)
     b.setTitle("Skip", for: .normal)
+    b.addTarget(self, action: #selector(skipToLast), for: .touchUpInside)
     return b
   }()
   
@@ -92,6 +94,28 @@ class WalkThrough: UIViewController {
     pageBottomTopC?.isActive = true
   }
   
+  @objc func goToNext(){
+    if pageControl.currentPage == data.count { return }
+    print("here")
+    let i = IndexPath(item: pageControl.currentPage + 1, section: 0)
+    cv.scrollToItem(at: i, at: .centeredHorizontally, animated: true)
+    
+    pageControl.currentPage = pageControl.currentPage + 1
+    
+    if (pageControl.currentPage == data.count /* 3 */ ){
+      animateControlsOut()
+    }
+    
+    if (pageControl.currentPage > 0){
+      UIApplication.shared.statusBarStyle = .default
+      setNeedsStatusBarAppearanceUpdate()
+    }
+  }
+  
+  @objc func skipToLast(){
+    pageControl.currentPage = data.count - 1 // 3
+    goToNext()
+  }
 }
 
 extension WalkThrough: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -129,29 +153,32 @@ extension WalkThrough: UICollectionViewDelegate, UICollectionViewDataSource, UIC
       UIApplication.shared.statusBarStyle = .lightContent
       setNeedsStatusBarAppearanceUpdate()
     }
-
     if ( pageControl.currentPage == data.count ){
-      // last cell animate buttons and page control out.
-      nButtonTopC?.constant = -50
-      sButtonTopC?.constant = -50
-      pageBottomTopC?.constant = 30
-      UIView.animate(withDuration: 0.3, animations: {
-        self.view.layoutIfNeeded()
-      }, completion: nil)
+      animateControlsOut()
     }else if pageControl.currentPage == data.count - 1  {
-      // animate in
-      nButtonTopC?.constant = 20
-      sButtonTopC?.constant = 20
-      pageBottomTopC?.constant = -20
-      
-      UIView.animate(withDuration: 0.3, animations: {
-        self.view.layoutIfNeeded()
-      }, completion: nil)
-      
+      animateControlsIn()
     }
-    
   }
   
+  func animateControlsOut(){
+    nButtonTopC?.constant = -50
+    sButtonTopC?.constant = -50
+    pageBottomTopC?.constant = 30
+    UIView.animate(withDuration: 0.3, animations: {
+      self.view.layoutIfNeeded()
+    }, completion: nil)
+  }
+  
+  func animateControlsIn(){
+    nButtonTopC?.constant = 20
+    sButtonTopC?.constant = 20
+    pageBottomTopC?.constant = -20
+    
+    UIView.animate(withDuration: 0.3, animations: {
+      self.view.layoutIfNeeded()
+    }, completion: nil)
+  }
+
 
 //  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 //    return 0
