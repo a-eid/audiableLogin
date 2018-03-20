@@ -27,6 +27,17 @@ extension UIView {
     }
   }
   
+  func anchorWHC(width: CGFloat?, height: CGFloat?){
+    self.translatesAutoresizingMaskIntoConstraints = false
+    if let width = width {
+      self.widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+    
+    if let height = height {
+      self.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+  }
+  
   // centerXY
   func anchorCenter(x: NSLayoutXAxisAnchor?, xConstant: CGFloat = 0, y: NSLayoutYAxisAnchor?, yConstant: CGFloat = 0){
     self.translatesAutoresizingMaskIntoConstraints = false

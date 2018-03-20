@@ -32,7 +32,7 @@ class WalkThrough: UIViewController {
     cv.delegate = self
     cv.isPagingEnabled = true
     cv.showsVerticalScrollIndicator = false
-    cv.showsHorizontalScrollIndicator = false 
+    cv.showsHorizontalScrollIndicator = false
     return cv
   }()
   
@@ -113,6 +113,10 @@ extension WalkThrough: UICollectionViewDelegate, UICollectionViewDataSource, UIC
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.bounds.width, height: view.bounds.height)
+  }
+  
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    view.endEditing(true)
   }
   
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
