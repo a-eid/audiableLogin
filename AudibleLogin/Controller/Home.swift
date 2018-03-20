@@ -32,9 +32,8 @@ class Home: UIViewController {
   }
   
   @objc func signout(){
-    UserDefaults.standard.set(false, forKey: isLoggedIn)
-    UserDefaults.standard.synchronize()
-    print( "Home" , UserDefaults.standard.bool(forKey: isLoggedIn))
+    UserDefaults.standard.setLoggedIn(false)
+    
     present(WalkThrough(), animated: true, completion: nil)
   }
 }
