@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = WalkThrough()
+    // rootview controller will be determined by the login status of the use
+    window?.rootViewController = Main()
     window?.makeKeyAndVisible()
     return true
   }

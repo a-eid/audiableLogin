@@ -49,14 +49,21 @@ class WalkThroughLoginCell: UICollectionViewCell {
     return tf
   }()
   
-  var submit: UIButton = {
+  lazy var submit: UIButton = {
     let b = UIButton()
     b.layer.cornerRadius = 5
     b.backgroundColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
     b.setTitle("Login", for: .normal)
     b.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+    b.addTarget(self, action: #selector(handleLoginIn), for: .touchUpInside)
     return b
   }()
+  
+  
+  @objc func handleLoginIn(){
+    // hmmm.
+    print("working")
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)

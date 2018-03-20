@@ -96,7 +96,6 @@ class WalkThrough: UIViewController {
   
   @objc func goToNext(){
     if pageControl.currentPage == data.count { return }
-    print("here")
     let i = IndexPath(item: pageControl.currentPage + 1, section: 0)
     cv.scrollToItem(at: i, at: .centeredHorizontally, animated: true)
     
