@@ -2,8 +2,6 @@ import UIKit
 
 class Home: UIViewController {
   
-  var main: Main?
-  
   let image: UIImageView = {
     let iv = UIImageView()
     iv.contentMode = .scaleAspectFill
@@ -11,9 +9,8 @@ class Home: UIViewController {
     return iv
   }()
   
-  let signoutButton: UIBarButtonItem = {
-    let b = UIBarButtonItem()
-    b.title = "Log Out"
+  lazy var signoutButton: UIBarButtonItem = {
+    let b = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(signout))
     return b
   }()
   
@@ -32,10 +29,12 @@ class Home: UIViewController {
   func setupNavItem(){
     navigationItem.title = "You Are Logged in"
     navigationItem.leftBarButtonItem = signoutButton
-    signoutButton.action = #selector(signout)
   }
   
   @objc func signout(){
-    main?.logout()
+    UserDefaults.standard.set(false, forKey: isLoggedIn)
+    UserDefaults.standard.synchronize()
+    print( "Home" , UserDefaults.standard.bool(forKey: isLoggedIn))
+    present(WalkThrough(), animated: true, completion: nil)
   }
 }

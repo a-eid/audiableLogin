@@ -192,9 +192,11 @@ extension WalkThrough: UICollectionViewDelegate, UICollectionViewDataSource, UIC
 
 extension WalkThrough: WalkThroughLoginDelegate {
   func handleLogin(username: String, password: String){
-    // get the rootviewcontroller
     if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Main {
       rvc.viewControllers = [ Home() ] // after dismissal this will be shown.
+      UserDefaults.standard.set( true, forKey: isLoggedIn )
+      UserDefaults.standard.synchronize() // won't save value if not called.
+      
       dismiss(animated: true, completion: nil)
     }
   }
