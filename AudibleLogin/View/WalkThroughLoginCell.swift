@@ -9,6 +9,14 @@ class WalkThroughLoginCell: UICollectionViewCell {
     return v
   }()
   
+  lazy var ai: UIActivityIndicatorView = {
+    let ai = UIActivityIndicatorView()
+    ai.translatesAutoresizingMaskIntoConstraints = false
+    ai.hidesWhenStopped = true
+    ai.color = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    return ai
+  }()
+  
   var logo: UIImageView = {
     let iv = UIImageView()
     iv.image = #imageLiteral(resourceName: "logo")
@@ -55,7 +63,26 @@ class WalkThroughLoginCell: UICollectionViewCell {
   
   
   @objc func handleLoginIn(){
-    WalkThrough?.handleLogin(username: "username", password: "password")
+    endEditing(true)
+    showSpinning()
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2 ) {
+      self.hideSpinning()
+      self.WalkThrough?.handleLogin(username: "username", password: "password")
+    }
+    
+  }
+  
+  private func showSpinning() {
+    submit.setTitle("", for: .normal)
+    addSubview(ai)
+    ai.startAnimating()
+    ai.centerXAnchor.constraint(equalTo: submit.centerXAnchor).isActive = true
+    ai.centerYAnchor.constraint(equalTo: submit.centerYAnchor).isActive = true
+  }
+  
+  private func hideSpinning(){
+    submit.setTitle("Login", for: .normal)
+    ai.stopAnimating()
   }
   
   override init(frame: CGRect) {
