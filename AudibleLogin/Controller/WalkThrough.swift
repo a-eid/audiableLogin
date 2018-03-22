@@ -29,7 +29,7 @@ class WalkThrough: UIViewController {
     layout.scrollDirection = .horizontal
     layout.minimumLineSpacing = 0
     let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    cv.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+    cv.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     cv.dataSource = self
     cv.delegate = self
     cv.isPagingEnabled = true
